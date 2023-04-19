@@ -6,6 +6,9 @@ const URI = 'mongodb://localhost/mean-empleados';
 mongoose.connect(URI)
     .then(db => {
         console.log('DB is conect');
+    })
+    .catch(err => {
+        console.error(err);
     });
 
-module.exports = moongose;
+module.exports = mongoose;
