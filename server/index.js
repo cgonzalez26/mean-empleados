@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const app = express();
+const cors = require('cors');
 //del archivo databases solo tomo la Conexion moongose
 const { mongoose } = require('./databases.js');
 const apiRouter = require('./routes/empleado.routes');
@@ -21,6 +22,9 @@ app.use(morgan('dev'));
 //express.json()->modulo de express que permite que el Server entienda el formato Json
 //permite usar request.body
 app.use(express.json());
+
+//permitimos ejecutar el Server de Angular
+app.use(cors({ origin: 'http://localhost:4200'}));
 
 //Routes
 //para que los usuarios accedan a los Servicios del server

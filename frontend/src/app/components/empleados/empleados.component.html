@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="row">
+        <div class="col s5">
+            <div class="card-content">
+                <form #empleadoForm="ngForm" (ngSubmit)="addEmpleado(empleadoForm)">
+                    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="empleadoService.selectedEmpleado._id">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="text" 
+                                name="nombre" 
+                                #nombre="ngModel" 
+                                [(ngModel)]="empleadoService.selectedEmpleado.nombre" 
+                                placeholder="Ingrese nombre"/>
+                        </div>                        
+                        <div class="input-field col s12">
+                            <input type="text" 
+                                name="apellido" 
+                                #apellido="ngModel" 
+                                [(ngModel)]="empleadoService.selectedEmpleado.apellido" 
+                                placeholder="Ingrese apellido"/>
+                        </div>                        
+                        <div class="input-field col s12">
+                            <input type="text" 
+                                name="email" 
+                                #email="ngModel" 
+                                [(ngModel)]="empleadoService.selectedEmpleado.email" 
+                                placeholder="Ingrese e-mail"/>
+                        </div>                        
+                        <div class="input-field col s12">
+                            <input type="text" 
+                                name="posicion" 
+                                #posicion="ngModel" 
+                                [(ngModel)]="empleadoService.selectedEmpleado.posicion" 
+                                placeholder="Ingrese posicion"/>
+                        </div>                        
+                        <div class="input-field col s12">
+                            <input type="text" 
+                                name="salario" 
+                                #salario="ngModel" 
+                                [(ngModel)]="empleadoService.selectedEmpleado.salario" 
+                                placeholder="Ingrese salario"/>
+                        </div> 
+                        <div class="card-action">
+                            <div class="input-field col s12">
+                                <button class="btn">Guardar</button>
+                                <button class="btn right" (click)="resetForm(empleadoForm)">Limpiar</button>
+                            </div>
+                        </div> 
+                    </div>
+                </form>
+            </div>
+            <div class="col s7">
+                <table>
+                    <thead>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Posicion</th>
+                        <th>Salario</th>
+                        <th>Acciones</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let e of empleadoService.empleados">
+                            <td>{{e.nombre}}</td>
+                            <td>{{e.apellido}}</td>
+                            <td>{{e.email}}</td>
+                            <td>{{e.posicion}}</td>
+                            <td>{{e.salario}}</td>
+                            <td><a (click)="editEmpleado(e)">
+                                <i class="material-icons">edit</i>
+                                </a>
+                            </td>
+                            <td><a (click)="deleteEmpleado(e._id)">
+                                <i class="material-icons">delete</i>
+                                </a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

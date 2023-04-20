@@ -25,7 +25,13 @@ empleadoCtrl.getEmpleados = async (req, res) =>{
 empleadoCtrl.addEmpleado = async (req, res) =>{
     //console.log(req.body);
     //guardar el Parametro recibido
-    const empleado = new Empleado(req.body);
+    const empleado = new Empleado({
+        nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        email: req.body.email,
+        posicion: req.body.posicion,
+        salario: req.body.salario
+    });
     await empleado.save();
     res.json({
         status: 'Empleado guardado'
